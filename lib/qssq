@@ -1,0 +1,116 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[900],
+      body: Column(
+        children: [
+          Container(
+            color: Colors.white,
+            width: 300,
+            height: 200,
+            child: Container(
+              child: Text(
+                  "Eveneqfffffsgdfgfgsggr;gkglfrgeoiobfgdlgertgeogifodldkgjkqqaament"),
+              decoration: BoxDecoration(
+                borderRadius:
+                    BorderRadius.only(bottomLeft: Radius.circular(80)),
+                color: Colors.grey[900],
+                border: Border(
+                  left: BorderSide(
+                    color: Colors.green,
+                    width: 3,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(topRight: Radius.circular(60)),
+              color: Colors.white,
+              border: Border(
+                left: BorderSide(
+                  color: Colors.green,
+                  width: 3,
+                ),
+              ),
+            ),
+            width: 300,
+            height: 480,
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
+
+
+                  child: ListView.builder(
+                      itemCount: data == null ? 0 : data.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return myWidget();
+                      }),
+
+
+
+
+
+
+                      Card(
+                  elevation: 10.0,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      const ListTile(
+                        title: Text("ddfd"),
+                        subtitle: Text('type evement.'),
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Text(
+                            '01/02/2021',
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            '02/03/2O21',
+                          ),
+                          const SizedBox(width: 8),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
