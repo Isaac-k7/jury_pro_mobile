@@ -107,7 +107,7 @@ class _NewUpdateEventState extends State<NewUpdateEvent> {
                       hintStyle: TextStyle(color: Colors.black45),
                       errorStyle: TextStyle(color: Colors.redAccent),
                       border: OutlineInputBorder(),
-                      suffixIcon: Icon(Icons.event_note, color: Colors.orange,),
+                      suffixIcon: Icon(Icons.event_note, color: Colors.orange),
                       
                     ),
                     autovalidateMode: AutovalidateMode.always,
