@@ -1,139 +1,105 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'dart:async';
+import 'package:jury_pro/splash.dart';
+import 'newUpdate.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(new Splash());
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  List data;
-  List evenements;
-  Future getData() async {
-    http.Response response =
-        await http.get("http://172.31.242.104:8080/evenements");
-
-    data = json.decode(response.body);
-    setState(() {
-      data = data;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getData();
-  }
-
+class Home extends StatelessWidget {
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          backgroundColor: Colors.grey[900],
-          body: Column(
-            children: <Widget>[
-              Expanded(
-                flex: 2,
-                child: Container(
-                  child: Center(
-                    child: Text(
-                      'Evenement',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 50,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
-                flex: 8,
-                child: Container(
-                  color: Colors.grey,
-                  child: ListView.builder(
-                      itemCount: data == null ? 0 : data.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return myWidget(data, index);
-                      }),
-                ),
-              ),
-            ],
-          )),
+    return new MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.orange[200],
+        accentColor: Colors.orange[200],
+        brightness: Brightness.light,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: new MyHomePage(),
     );
   }
 }
 
-//replace with example code above
-Widget myWidget(_data, _index) {
-  var data = _data;
-  var index = _index;
-  return Row(
-    children: <Widget>[
-      Expanded(
-        flex: 7,
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => new _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+                            backgroundColor: Colors.black,
+          shadowColor: Colors.orange,
+          iconTheme: IconThemeData(color:Colors.orange[700]),
+        title:Center(child: Text('Connexion',style: TextStyle(fontSize: 25, color: Colors.orange[700]))),
+      ),
+      drawer: new Drawer(
+        child: ListView(
+          children: <Widget>[
+            new UserAccountsDrawerHeader(
+              accountName: new Text('Isaac'),
+              accountEmail: new Text('isaac07.ik@gmail.com'),
+              currentAccountPicture: new CircleAvatar(
+                backgroundImage: new NetworkImage('http://i.pravatar.cc/300'),
+              ),
+            ),
+            new ListTile(
+                title: new Text('Inscription'),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              new NewUpdateEvent()));
+                })
+          ],
+        ),
+      ),
+      body: Form(),
+    );
+  }
+}
+
+class Form extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // Material is a conceptual piece of paper on which the UI appears.
+    return Container(
+        padding: EdgeInsets.symmetric(vertical: 100, horizontal: 30),
+        // Column is a vertical, linear layout.
         child: Container(
-          // decoration: BoxDecoration(
-          //   borderRadius: BorderRadius.only(topRight: Radius.circular(60)),
-          //   color: Colors.white,
-          //   border: Border(
-          //     left: BorderSide(
-          //       color: Colors.green,
-          //       width: 3,
-          //     ),
-          //   ),
-          // ),
-          child: Column(
+          child: ListView(
             children: <Widget>[
-              Center(
-                //listes des evenements
-                child: Card(
-                  elevation: 10.0,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      ListTile(
-                        title: Text("${data[index]["nom"]}"),
-                        subtitle: Text("${data[index]["type"]}"),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          Text(
-                            "${data[index]["dateDebut"]}",
-                          ),
-                          const SizedBox(width: 8),
-                          Text(
-                            "${data[index]["dateFin"]}",
-                          ),
-                          const SizedBox(width: 8),
-                        ],
-                      ),
-                    ],
-                  ),
+              Text("Entrez votre addresse mail",style: TextStyle(color: Colors.orange)),
+              TextFormField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'isaac07.ik@gmail.com'),
+              ),
+              Text("                    "),
+              Text("Entrez votre mot de passe",style: TextStyle(color: Colors.orange)),
+              TextFormField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  suffix: IconButton(
+                      icon: Icon(Icons.visibility), onPressed: () {}),
                 ),
               ),
+              Text("                    "),
+              RaisedButton(
+                color: Colors.orange[700],
+                onPressed: () {
+                  // Validate will return true if the form is valid, or false if
+                  // the form is invalid.
+                },
+                child: Text('Submit'),
+              )
             ],
           ),
-        ),
-      ),
-      Expanded(
-        flex: 3,
-        child: Container(
-          child: Center(
-              child: Text(
-            "Evenement",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 20,
-            ),
-          )),
-          color: Colors.white,
-        ),
-      ),
-    ],
-  );
+        ));
+  }
 }

@@ -5,13 +5,13 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
 
-class Evenement extends StatefulWidget {
-  static const pageName = "Evenement";
+class Candidat extends StatefulWidget {
+  static const pageName = "Ecenement";
   @override
-  _EvenementState createState() => _EvenementState();
+  _CandidatState createState() => _CandidatState();
 }
 
-class _EvenementState extends State<Evenement> {
+class _CandidatState extends State<Candidat> {
   String item = "evenements";
   List data;
   List evenements;
@@ -31,11 +31,11 @@ class _EvenementState extends State<Evenement> {
     getData(item);
   }
 
-  Future deleteEvenement(String uri) async {
+  Future deleteCandidat(String uri) async {
     String _uri = uri;
 
     var request = http.Request('POST',
-        Uri.parse('http://172.31.242.104:8080/evenements/delete/' + _uri));
+        Uri.parse('http://172.31.242.104:8080/candidats' + _uri));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
@@ -68,83 +68,60 @@ class _EvenementState extends State<Evenement> {
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(20),
-                                  // 
+                                  // image: DecorationImage(
+                                  //   image: NetworkImage(
+                                  //       "https://cdn.pixabay.com/photo/2015/08/28/16/38/stars-912134_960_720.jpg"),
+                                  //   fit: BoxFit.cover,
+                                  // )
                                   ),
                               height: 200,
                               width: 250,
                               child: Expanded(
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
-                                    Container(
-                                      child: Row(
-                                        mainAxisAlignment:MainAxisAlignment.start ,
-                                        children: [
-                                          Align(
-                                            
-                                              alignment: Alignment.topLeft,
-                                              child: Image.asset(
-                                                "images/orange.png",
-                                                fit: BoxFit.cover,
-                                                height: 30,
-                                              ),
-                                              ),
-                                          Align(
-                                                alignment: Alignment.topRight,
-                                                child:Text("${data[index]["nom"]}",
-                                          style: TextStyle(
-                                              color: Colors.orange[700],
-                                              fontSize: 24)),
-                                              )
-                                        ],
-                                      ),
-                                    ),
-                                    Column(
-                                      children: [
-                                        Container(
-                                          height: 80,
-                                          width: 130,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
-                                            image: DecorationImage(
-                                                  image: NetworkImage(
-                                                      "https://cdn.pixabay.com/photo/2015/08/28/16/38/stars-912134_960_720.jpg"),
-                                                  fit: BoxFit.cover,
-                                            )
-                                          ),
+                                    Align(
+                                        // alignment: Alignment.topRight,
+                                        // child: Image.asset(
+                                        //   "images/orange.png",
+                                        //   fit: BoxFit.cover,
+                                        //   height: 30,
+                                        // ),
                                         ),
-                                        Text("${data[index]["type"]}",
+                                    ListTile(
+                                      title: Text("Nom: ${data[index]["candidat_nom"]}",
                                           style: TextStyle(
-                                              color: Colors.orange,
+                                              color: Colors.white,
+                                              fontSize: 24)),
+                                      subtitle: Text("Prénom: ${data[index]["candidat_prenom"]}",
+                                          style: TextStyle(
+                                              color: Colors.white,
                                               fontSize: 18)),
-                                      ],
                                     ),
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: <Widget>[
-                                        Text("${data[index]["dateDebut"]}",
+                                        Text("Téléphone: ${data[index]["candidat_telephone"]}",
                                             style: TextStyle(
                                                 color: Colors.orange[700],
-                                                fontSize: 11)),
-                                        Text("${data[index]["dateFin"]}",
+                                                fontSize: 16)),
+                                        Text("Code: ${data[index]["candidat_code"]}",
                                             style: TextStyle(
                                                 color: Colors.orange[700],
-                                                fontSize: 11)),
+                                                fontSize: 16)),
                                       ],
                                     ),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Align(
                                           alignment: Alignment.bottomLeft,
                                           child: Container(
                                             height: 40,
-                                            width:40,
+                                            width: 40,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(40),
-                                              // color: Colors.blue,
+                                              color: Colors.blue,
                                             ),
                                             child: IconButton(
                                               icon: Icon(Icons.delete),
@@ -167,7 +144,7 @@ class _EvenementState extends State<Evenement> {
                                                                               .orange[
                                                                           900])),
                                                               onPressed: () {
-                                                                this.deleteEvenement(
+                                                                this.deleteCandidat(
                                                                     "${data[index]["id"]}"
                                                                         .toString());
                                                                 print(
@@ -203,7 +180,7 @@ class _EvenementState extends State<Evenement> {
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(40),
-                                              // color: Colors.red,
+                                              color: Colors.red,
                                             ),
                                             child: IconButton(
                                               icon: Icon(Icons.edit),
@@ -227,7 +204,7 @@ class _EvenementState extends State<Evenement> {
                                                                               .orange[
                                                                           900])),
                                                               onPressed: () {
-                                                                this.deleteEvenement(
+                                                                this.deleteCandidat(
                                                                     "${data[index]["id"]}"
                                                                         .toString());
                                                                 Navigator.of(

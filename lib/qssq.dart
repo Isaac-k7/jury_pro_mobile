@@ -74,51 +74,25 @@ class _EvenementState extends State<Evenement> {
                               width: 250,
                               child: Expanded(
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
-                                    Container(
-                                      child: Row(
-                                        mainAxisAlignment:MainAxisAlignment.start ,
-                                        children: [
-                                          Align(
-                                            
-                                              alignment: Alignment.topLeft,
-                                              child: Image.asset(
-                                                "images/orange.png",
-                                                fit: BoxFit.cover,
-                                                height: 30,
-                                              ),
-                                              ),
-                                          Align(
-                                                alignment: Alignment.topRight,
-                                                child:Text("${data[index]["nom"]}",
+                                    Align(
+                                        alignment: Alignment.topRight,
+                                        child: Image.asset(
+                                          "images/orange.png",
+                                          fit: BoxFit.cover,
+                                          height: 30,
+                                        ),
+                                        ),
+                                    ListTile(
+                                      title: Text("${data[index]["nom"]}",
                                           style: TextStyle(
                                               color: Colors.orange[700],
                                               fontSize: 24)),
-                                              )
-                                        ],
-                                      ),
-                                    ),
-                                    Column(
-                                      children: [
-                                        Container(
-                                          height: 80,
-                                          width: 130,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
-                                            image: DecorationImage(
-                                                  image: NetworkImage(
-                                                      "https://cdn.pixabay.com/photo/2015/08/28/16/38/stars-912134_960_720.jpg"),
-                                                  fit: BoxFit.cover,
-                                            )
-                                          ),
-                                        ),
-                                        Text("${data[index]["type"]}",
+                                      subtitle: Text("${data[index]["type"]}",
                                           style: TextStyle(
                                               color: Colors.orange,
                                               fontSize: 18)),
-                                      ],
                                     ),
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.end,
@@ -126,25 +100,24 @@ class _EvenementState extends State<Evenement> {
                                         Text("${data[index]["dateDebut"]}",
                                             style: TextStyle(
                                                 color: Colors.orange[700],
-                                                fontSize: 11)),
+                                                fontSize: 16)),
                                         Text("${data[index]["dateFin"]}",
                                             style: TextStyle(
                                                 color: Colors.orange[700],
-                                                fontSize: 11)),
+                                                fontSize: 16)),
                                       ],
                                     ),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Align(
                                           alignment: Alignment.bottomLeft,
                                           child: Container(
                                             height: 40,
-                                            width:40,
+                                            width: 40,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(40),
-                                              // color: Colors.blue,
+                                              color: Colors.blue,
                                             ),
                                             child: IconButton(
                                               icon: Icon(Icons.delete),
@@ -203,7 +176,7 @@ class _EvenementState extends State<Evenement> {
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(40),
-                                              // color: Colors.red,
+                                              color: Colors.red,
                                             ),
                                             child: IconButton(
                                               icon: Icon(Icons.edit),
