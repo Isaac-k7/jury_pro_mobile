@@ -67,36 +67,37 @@ class _EvenementState extends State<Evenement> {
                             elevation: 10.0,
                             child: Container(
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  // 
-                                  ),
+                                borderRadius: BorderRadius.circular(20),
+                                //
+                              ),
                               height: 200,
                               width: 250,
                               child: Expanded(
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   mainAxisSize: MainAxisSize.max,
                                   children: <Widget>[
                                     Container(
                                       child: Row(
-                                        mainAxisAlignment:MainAxisAlignment.start ,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
                                           Align(
-                                            
-                                              alignment: Alignment.topLeft,
-                                              child: Image.asset(
-                                                "images/orange.png",
-                                                fit: BoxFit.cover,
-                                                height: 30,
-                                              ),
-                                              ),
+                                            alignment: Alignment.topLeft,
+                                            child: Image.asset(
+                                              "images/orange.png",
+                                              fit: BoxFit.cover,
+                                              height: 30,
+                                            ),
+                                          ),
                                           Align(
-                                                alignment: Alignment.topRight,
-                                                child:Text("${data[index]["nom"]}",
-                                          style: TextStyle(
-                                              color: Colors.orange[700],
-                                              fontSize: 24)),
-                                              )
+                                            alignment: Alignment.topRight,
+                                            child: Text("${data[index]["nom"]}",
+                                                style: TextStyle(
+                                                    color: Colors.orange[700],
+                                                    fontSize: 24)),
+                                          )
                                         ],
                                       ),
                                     ),
@@ -106,18 +107,18 @@ class _EvenementState extends State<Evenement> {
                                           height: 80,
                                           width: 130,
                                           decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(5),
-                                            image: DecorationImage(
-                                                  image: NetworkImage(
-                                                      "https://cdn.pixabay.com/photo/2015/08/28/16/38/stars-912134_960_720.jpg"),
-                                                  fit: BoxFit.cover,
-                                            )
-                                          ),
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              image: DecorationImage(
+                                                image: NetworkImage(
+                                                    "https://cdn.pixabay.com/photo/2015/08/28/16/38/stars-912134_960_720.jpg"),
+                                                fit: BoxFit.cover,
+                                              )),
                                         ),
                                         Text("${data[index]["type"]}",
-                                          style: TextStyle(
-                                              color: Colors.orange,
-                                              fontSize: 18)),
+                                            style: TextStyle(
+                                                color: Colors.orange,
+                                                fontSize: 18)),
                                       ],
                                     ),
                                     Column(
@@ -134,13 +135,14 @@ class _EvenementState extends State<Evenement> {
                                       ],
                                     ),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Align(
                                           alignment: Alignment.bottomLeft,
                                           child: Container(
                                             height: 40,
-                                            width:40,
+                                            width: 40,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(40),

@@ -4,7 +4,7 @@ import 'newUpdate.dart';
 
 void main() => runApp(new Splash());
 
-class Home extends StatelessWidget {
+class Login extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -15,25 +15,27 @@ class Home extends StatelessWidget {
         brightness: Brightness.light,
       ),
       debugShowCheckedModeBanner: false,
-      home: new MyHomePage(),
+      home: new LoginPage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class LoginPage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  _LoginPageState createState() => new _LoginPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-                            backgroundColor: Colors.black,
-          shadowColor: Colors.orange,
-          iconTheme: IconThemeData(color:Colors.orange[700]),
-        title:Center(child: Text('Connexion',style: TextStyle(fontSize: 25, color: Colors.orange[700]))),
+        backgroundColor: Colors.black,
+        shadowColor: Colors.orange,
+        iconTheme: IconThemeData(color: Colors.orange[700]),
+        title: Center(
+            child: Text('Connexion',
+                style: TextStyle(fontSize: 25, color: Colors.orange[700]))),
       ),
       drawer: new Drawer(
         child: ListView(
@@ -73,14 +75,16 @@ class Form extends StatelessWidget {
         child: Container(
           child: ListView(
             children: <Widget>[
-              Text("Entrez votre addresse mail",style: TextStyle(color: Colors.orange)),
+              Text("Entrez votre addresse mail",
+                  style: TextStyle(color: Colors.orange)),
               TextFormField(
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'isaac07.ik@gmail.com'),
               ),
               Text("                    "),
-              Text("Entrez votre mot de passe",style: TextStyle(color: Colors.orange)),
+              Text("Entrez votre mot de passe",
+                  style: TextStyle(color: Colors.orange)),
               TextFormField(
                 obscureText: true,
                 decoration: InputDecoration(
