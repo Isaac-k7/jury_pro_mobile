@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'evenement.dart';
 import 'main.dart';
+import '_main.dart';
 
 class Home extends StatefulWidget {
   static const pageName = "Evenement";
@@ -14,6 +15,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
@@ -31,7 +33,7 @@ class _HomeState extends State<Home> {
                       child: Container(
                         height: 100,
                         width: 100,
-                        color: Colors.blue,
+                        color: Colors.white,
                         child: Icon(
                           Icons.supervised_user_circle,
                           size: 100,
@@ -54,7 +56,7 @@ class _HomeState extends State<Home> {
                       child: Container(
                         height: 100,
                         width: 100,
-                        color: Colors.blue,
+                        color: Colors.white,
                         child: Icon(
                           Icons.verified,
                           size: 100,
@@ -81,12 +83,12 @@ class _HomeState extends State<Home> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Evenement()));
+                                builder: (context) => MyApp()));
                       },
                       child: Container(
                         height: 100,
                         width: 100,
-                        color: Colors.blue,
+                        color: Colors.white,
                         child: Icon(
                           Icons.event_note,
                           size: 100,
@@ -109,7 +111,7 @@ class _HomeState extends State<Home> {
                       child: Container(
                         height: 100,
                         width: 100,
-                        color: Colors.blue,
+                        color: Colors.white,
                         child: Icon(
                           Icons.verified,
                           size: 100,
@@ -139,7 +141,7 @@ class _HomeState extends State<Home> {
                       child: Container(
                         height: 100,
                         width: 100,
-                        color: Colors.blue,
+                        color: Colors.white,
                         child: Icon(
                           Icons.supervised_user_circle,
                           size: 100,
@@ -162,7 +164,7 @@ class _HomeState extends State<Home> {
                       child: Container(
                         height: 100,
                         width: 100,
-                        color: Colors.blue,
+                        color: Colors.white,
                         child: Icon(
                           Icons.verified,
                           size: 100,

@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:date_field/date_field.dart';
-import 'dart:io';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
 
 class NewUpdateEvent extends StatefulWidget {
   @override
@@ -15,21 +11,6 @@ class _NewUpdateEventState extends State<NewUpdateEvent> {
   String phpMsg;
   String regInfo;
   DateTime selectedDateDebut, selectedDateFin;
-
-  //image variables
-
-  Future<File> file;
-  String status = '';
-  String base64Image;
-  File tmpFile;
-  String errMessage = 'Error Uploading Image';
-
-  chooseImage() {
-    setState(() {
-      file = ImagePicker.pickImage(source: ImageSource.gallery);
-    });
-  }
-
   // DateTime dateDebut;
   // DateTime dateFin;
 
@@ -69,10 +50,11 @@ class _NewUpdateEventState extends State<NewUpdateEvent> {
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-                    backgroundColor: Colors.black,
-          shadowColor: Colors.orange,
-          iconTheme: IconThemeData(color:Colors.orange[700]),
-          title: Center(child: new Text('Nouvel evenement', style: TextStyle(color:Colors.orange[700], fontSize: 25))),
+          backgroundColor: Colors.black,
+          iconTheme: IconThemeData(color: Colors.orange[700]),
+          title: Center(
+              child: new Text('Nouvel evenement',
+                  style: TextStyle(color: Colors.orange[700], fontSize: 25))),
         ),
         body: Container(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 30),
@@ -83,17 +65,19 @@ class _NewUpdateEventState extends State<NewUpdateEvent> {
                   Text("                    "),
                   Text("                    "),
                   Text("                    "),
-                  Text("Nom de l'evenement",style: TextStyle(color:Colors.orange[700])),
+                  Text("Nom de l'evenement",
+                      style: TextStyle(color: Colors.orange[700])),
                   TextFormField(
-
                     controller: nom,
                     cursorColor: Colors.orange,
                     decoration: InputDecoration(
                         focusColor: Colors.orange,
-                        border: OutlineInputBorder(), labelText: ''),
+                        border: OutlineInputBorder(),
+                        labelText: ''),
                   ),
                   Text("                    "),
-                  Text("Type d'evenement",style: TextStyle(color:Colors.orange[700])),
+                  Text("Type d'evenement",
+                      style: TextStyle(color: Colors.orange[700])),
                   TextFormField(
                     controller: type,
                     cursorColor: Colors.orange,
@@ -103,13 +87,14 @@ class _NewUpdateEventState extends State<NewUpdateEvent> {
                     ),
                   ),
                   Text("                    "),
-                  Text("Date de debut",style: TextStyle(color:Colors.orange[700])),
+                  Text("Date de debut",
+                      style: TextStyle(color: Colors.orange[700])),
                   DateTimeFormField(
                     decoration: const InputDecoration(
                       hintStyle: TextStyle(color: Colors.black45),
                       errorStyle: TextStyle(color: Colors.redAccent),
                       border: OutlineInputBorder(),
-                      suffixIcon: Icon(Icons.event_note, color:Colors.orange),
+                      suffixIcon: Icon(Icons.event_note, color: Colors.orange),
                     ),
                     autovalidateMode: AutovalidateMode.always,
                     validator: (e) =>
@@ -120,14 +105,17 @@ class _NewUpdateEventState extends State<NewUpdateEvent> {
                     },
                   ),
                   Text("                    "),
-                  Text("Date de fin" , style: TextStyle(color:Colors.orange[700])),
+                  Text("Date de fin",
+                      style: TextStyle(color: Colors.orange[700])),
                   DateTimeFormField(
                     decoration: const InputDecoration(
                       hintStyle: TextStyle(color: Colors.black45),
                       errorStyle: TextStyle(color: Colors.redAccent),
                       border: OutlineInputBorder(),
-                      suffixIcon: Icon(Icons.event_note, color: Colors.orange),
-                      
+                      suffixIcon: Icon(
+                        Icons.event_note,
+                        color: Colors.orange,
+                      ),
                     ),
                     autovalidateMode: AutovalidateMode.always,
                     validator: (e) =>
@@ -146,10 +134,6 @@ class _NewUpdateEventState extends State<NewUpdateEvent> {
                       sendData();
                       // Validate will return true if the form is valid, or false if
                       // the form is invalid.
-                      Navigator.of(
-                                  context)
-                              .pop();
-                          setState(() {});
                     },
                     child: Text('Enregistrer'),
                   )

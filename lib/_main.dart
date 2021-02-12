@@ -30,11 +30,11 @@ class _MyAppState extends State<MyApp> {
                 new MaterialPageRoute(
                     builder: (BuildContext context) => edit));
           },
-          child: Icon(Icons.add),
-          backgroundColor: Colors.orange[700],
+          child: Icon(Icons.add, color: Colors.white),
+          backgroundColor: Colors.orange[500],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        backgroundColor: Colors.grey[900],
+        backgroundColor: Colors.orange[700],
         body: Container(
           alignment: Alignment.topCenter,
           height: double.infinity,
@@ -49,13 +49,13 @@ class _MyAppState extends State<MyApp> {
                   decoration: BoxDecoration(
                     borderRadius:
                         BorderRadius.only(bottomLeft: Radius.circular(60)),
-                    color: Colors.black,
+                    color: Colors.orange[500],
                   ),
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
                       title,
-                      style: TextStyle(color: Colors.orange[700], fontSize: 48),
+                      style: TextStyle(color: Colors.white, fontSize: 48),
                     ),
                   ),
                 ),
@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
                   flex: 7,
                   child: Container(
                       alignment: Alignment.topCenter,
-                      color: Colors.black,
+                      color: Colors.orange[500],
                       child: DefaultTabController(
                         length: 4,
                         child: Row(
@@ -92,44 +92,49 @@ class _MyAppState extends State<MyApp> {
                             Expanded(
                               flex: 2,
                               child: Container(
-                                color: Colors.black,
+                                color: Colors.orange[500],
                                 height: double.infinity,
                                 child: RotatedBox(
                                   quarterTurns: 3,
-                                  child: Scaffold(
-                                    appBar: AppBar(
-                                        backgroundColor: Colors.black,
-                                        bottom: PreferredSize(
-                                          preferredSize: Size(300, 200),
-                                          child: Container(
-                                            child: TabBar(tabs: [
-                                              Tab(
-                                                  child: Text("Evenement",
-                                                      style: TextStyle(
-                                                          color: Colors
-                                                              .orange[700],
-                                                          fontSize: 20))),
-                                              Tab(
-                                                  child: Text("Candidat",
-                                                      style: TextStyle(
-                                                          color: Colors
-                                                              .orange[700],
-                                                          fontSize: 20))),
-                                              Tab(
-                                                  child: Text("Groupe",
-                                                      style: TextStyle(
-                                                          color: Colors
-                                                              .orange[700],
-                                                          fontSize: 20))),
-                                              Tab(
-                                                  child: Text("Critère",
-                                                      style: TextStyle(
-                                                          color: Colors
-                                                              .orange[700],
-                                                          fontSize: 20))),
-                                            ]),
-                                          ),
-                                        )),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly        ,
+                                    children: [
+                                      Scaffold(
+                                        appBar: AppBar(
+                                            backgroundColor: Colors.orange[500],
+                                            bottom: PreferredSize(
+                                              preferredSize: Size(300, 200),
+                                              child: Container(
+                                                child: TabBar(tabs: [
+                                                  Tab(
+                                                      child: Text("Evenement",
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .white,
+                                                              fontSize: 20))),
+                                                  Tab(
+                                                      child: Text("Candidat",
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .white,
+                                                              fontSize: 20))),
+                                                  Tab(
+                                                      child: Text("Groupe",
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .white,
+                                                              fontSize: 20))),
+                                                  Tab(
+                                                      child: Text("Critère",
+                                                          style: TextStyle(
+                                                              color: Colors
+                                                                  .white,
+                                                              fontSize: 20))),
+                                                ]),
+                                              ),
+                                            )),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),

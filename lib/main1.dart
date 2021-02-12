@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MyApp2());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp2 extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
