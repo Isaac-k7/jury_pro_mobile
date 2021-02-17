@@ -4,6 +4,10 @@ import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
+import 'dart:io';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 
 class Evenement extends StatefulWidget {
   static const pageName = "Evenement";
@@ -15,10 +19,16 @@ class _EvenementState extends State<Evenement> {
   String item = "evenements";
   List data;
   List evenements;
+  Future<File> file;
+  String status = '';
+  String base64Image;
+  File tmpFile;
+  String errMessage = 'Error Uploading Image';
+
   Future getData(String uri) async {
     String _uri = uri;
     http.Response response =
-        await http.get("http://172.31.242.104:8080/" + _uri);
+        await http.get("http://172.31.240.26:8080/" + _uri);
     data = json.decode(response.body);
     setState(() {
       data = data;
@@ -31,11 +41,34 @@ class _EvenementState extends State<Evenement> {
     getData(item);
   }
 
+  //upload image
+
+//   startUpload() {
+//   setStatus('Uploading Image...');
+//   if (null == tmpFile) {
+//     setStatus(errMessage);
+//     return;
+//   }
+//   String fileName = tmpFile.path.split('/').last;
+//   upload(fileName);
+// }
+
+// upload(String fileName) {
+//   http.post(uploadEndPoint, body: {
+//     "image": base64Image,
+//     "name": fileName,
+//   }).then((result) {
+//     setStatus(result.statusCode == 200 ? result.body : errMessage);
+//   }).catchError((error) {
+//     setStatus(error);
+//   });
+// }
+
   Future deleteEvenement(String uri) async {
     String _uri = uri;
 
     var request = http.Request('POST',
-        Uri.parse('http://172.31.242.104:8080/evenements/delete/' + _uri));
+        Uri.parse('http://172.31.242.26:8080/evenements/delete/' + _uri));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
@@ -105,13 +138,13 @@ class _EvenementState extends State<Evenement> {
                                       children: [
                                         Container(
                                           height: 80,
-                                          width: 130,
+                                          width: 80,
                                           decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5),
                                               image: DecorationImage(
                                                 image: NetworkImage(
-                                                    "https://cdn.pixabay.com/photo/2015/08/28/16/38/stars-912134_960_720.jpg"),
+                                                    "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg"),
                                                 fit: BoxFit.cover,
                                               )),
                                         ),
@@ -124,11 +157,11 @@ class _EvenementState extends State<Evenement> {
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: <Widget>[
-                                        Text("${data[index]["dateDebut"]}",
+                                        Text("Début: ${data[index]["dateDebut"]}",
                                             style: TextStyle(
                                                 color: Colors.orange[700],
                                                 fontSize: 11)),
-                                        Text("${data[index]["dateFin"]}",
+                                        Text("Fin: ${data[index]["dateFin"]}",
                                             style: TextStyle(
                                                 color: Colors.orange[700],
                                                 fontSize: 11)),

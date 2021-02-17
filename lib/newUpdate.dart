@@ -22,11 +22,11 @@ class _NewUpdateEventState extends State<NewUpdateEvent> {
   File tmpFile;
   String errMessage = 'Error Uploading Image';
 
-  chooseImage() {
-    setState(() {
-      file = ImagePicker.pickImage(source: ImageSource.gallery);
-    });
-  }
+  // chooseImage() {
+  //   setState(() {
+  //     file = ImagePicker.pickImage(source: ImageSource.gallery);
+  //   });
+  // }
 
   // DateTime dateDebut;
   // DateTime dateFin;
