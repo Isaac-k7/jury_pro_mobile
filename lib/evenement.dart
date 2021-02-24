@@ -9,6 +9,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 
+import '_main.dart';
+import 'newUpdate.dart';
+
 class Evenement extends StatefulWidget {
   static const pageName = "Evenement";
   @override
@@ -19,6 +22,8 @@ class _EvenementState extends State<Evenement> {
   String item = "evenements";
   List data;
   List evenements;
+
+  // Upload image var
   Future<File> file;
   String status = '';
   String base64Image;
@@ -41,34 +46,18 @@ class _EvenementState extends State<Evenement> {
     getData(item);
   }
 
-  //upload image
-
-//   startUpload() {
-//   setStatus('Uploading Image...');
-//   if (null == tmpFile) {
-//     setStatus(errMessage);
-//     return;
-//   }
-//   String fileName = tmpFile.path.split('/').last;
-//   upload(fileName);
-// }
-
-// upload(String fileName) {
-//   http.post(uploadEndPoint, body: {
-//     "image": base64Image,
-//     "name": fileName,
-//   }).then((result) {
-//     setStatus(result.statusCode == 200 ? result.body : errMessage);
-//   }).catchError((error) {
-//     setStatus(error);
-//   });
-// }
+  chooseImage() {
+    setState(() {
+      // ignore: deprecated_member_use
+      file = ImagePicker.pickImage(source: ImageSource.gallery);
+    });
+  }
 
   Future deleteEvenement(String uri) async {
     String _uri = uri;
 
     var request = http.Request('POST',
-        Uri.parse('http://172.31.242.26:8080/evenements/delete/' + _uri));
+        Uri.parse('http://172.31.240.26:8080/evenements/delete/' + _uri));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
@@ -83,6 +72,7 @@ class _EvenementState extends State<Evenement> {
       child: ListView.builder(
           itemCount: data == null ? 0 : data.length,
           itemBuilder: (BuildContext context, int index) {
+            var image = base64Decode("${data[index]["images"]}");
             return Row(
               children: <Widget>[
                 Expanded(
@@ -118,10 +108,10 @@ class _EvenementState extends State<Evenement> {
                                         children: [
                                           Align(
                                             alignment: Alignment.topLeft,
-                                            child: Image.asset(
-                                              "images/orange.png",
-                                              fit: BoxFit.cover,
-                                              height: 30,
+                                            child: Icon(
+                                              Icons.event_note,
+                                              size: 30,
+                                              color: Colors.grey,
                                             ),
                                           ),
                                           Align(
@@ -138,15 +128,12 @@ class _EvenementState extends State<Evenement> {
                                       children: [
                                         Container(
                                           height: 80,
-                                          width: 80,
+                                          width: 100,
+                                          child: Image.memory(image),
                                           decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5),
-                                              image: DecorationImage(
-                                                image: NetworkImage(
-                                                    "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg"),
-                                                fit: BoxFit.cover,
-                                              )),
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                          ),
                                         ),
                                         Text("${data[index]["type"]}",
                                             style: TextStyle(
@@ -157,7 +144,8 @@ class _EvenementState extends State<Evenement> {
                                     Column(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: <Widget>[
-                                        Text("Début: ${data[index]["dateDebut"]}",
+                                        Text(
+                                            "Début: ${data[index]["dateDebut"]}",
                                             style: TextStyle(
                                                 color: Colors.orange[700],
                                                 fontSize: 11)),
@@ -187,7 +175,8 @@ class _EvenementState extends State<Evenement> {
                                               onPressed: () {
                                                 showCupertinoDialog(
                                                     context: context,
-                                                    builder: (_) =>
+                                                    builder: (BuildContext
+                                                            context) =>
                                                         CupertinoAlertDialog(
                                                           title: Text(
                                                               "Etes-vous sûr de vouloir supprimer cet evenement?"),
@@ -205,12 +194,18 @@ class _EvenementState extends State<Evenement> {
                                                                 this.deleteEvenement(
                                                                     "${data[index]["id"]}"
                                                                         .toString());
-                                                                print(
-                                                                    "${data[index]["id"]}");
                                                                 Navigator.of(
                                                                         context)
                                                                     .pop();
-                                                                setState(() {});
+                                                                Navigator.of(
+                                                                        context)
+                                                                    .pop();
+                                                                Navigator.push(
+                                                                    context,
+                                                                    MaterialPageRoute(
+                                                                        builder:
+                                                                            (context) =>
+                                                                                MyApp()));
                                                               },
                                                             ),
                                                             CupertinoButton(
@@ -244,46 +239,15 @@ class _EvenementState extends State<Evenement> {
                                               icon: Icon(Icons.edit),
                                               color: Colors.green,
                                               onPressed: () {
-                                                showCupertinoDialog(
-                                                    context: context,
-                                                    builder: (_) =>
-                                                        CupertinoAlertDialog(
-                                                          title: Text(
-                                                              "This is the title"),
-                                                          content: Text(
-                                                              "This is the content"),
-                                                          actions: [
-                                                            // Close the dialog
-
-                                                            CupertinoButton(
-                                                              child: Text("OUI",
-                                                                  style: TextStyle(
-                                                                      color: Colors
-                                                                              .orange[
-                                                                          900])),
-                                                              onPressed: () {
-                                                                this.deleteEvenement(
-                                                                    "${data[index]["id"]}"
-                                                                        .toString());
-                                                                Navigator.of(
-                                                                        context)
-                                                                    .pop();
-                                                                setState(() {});
-                                                              },
-                                                            ),
-                                                            CupertinoButton(
-                                                                child: Text(
-                                                                    'NON',
-                                                                    style: TextStyle(
-                                                                        color: Colors
-                                                                            .orange[900])),
-                                                                onPressed: () {
-                                                                  Navigator.of(
-                                                                          context)
-                                                                      .pop();
-                                                                })
-                                                          ],
-                                                        ));
+                                                print('non implémenter');
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          NewUpdateEvent(
+                                                        id: "${data[index]["id"]}",
+                                                      ),
+                                                    ));
                                               },
                                             ),
                                           ),

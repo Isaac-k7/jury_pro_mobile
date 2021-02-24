@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                       context,
                       new MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              new NewUpdateEvent()));
+                              new NewUpdateEvent(id:null)));
                 })
           ],
         ),

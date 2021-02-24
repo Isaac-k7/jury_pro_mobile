@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jury_pro/Candidat.dart';
 import 'package:jury_pro/newUpdate.dart';
 import 'Evenement.dart';
-import 'listeCandidat.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,7 +13,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    String title = 'Evenements';
+    String title = "Evenements";
     return MaterialApp(
       theme: ThemeData(
         primaryColor: Colors.orange[200],
@@ -94,56 +93,43 @@ class _MyAppState extends State<MyApp> {
                                 color: Colors.black,
                                 height: double.infinity,
                                 child: RotatedBox(
-                                    quarterTurns: 3,
-                                    child: PreferredSize(
-                                      preferredSize: Size(300, 200),
-                                      child: Container(
-                                        child: TabBar(
-                                          tabs: [
-                                            Tab(
-                                                child: Text("Evenement",
-                                                    style: TextStyle(
-                                                        color:
-                                                            Colors.orange[700],
-                                                        fontSize: 20))),
-                                            Tab(
-                                                child: Text("Candidat",
-                                                    style: TextStyle(
-                                                        color:
-                                                            Colors.orange[700],
-                                                        fontSize: 20))),
-                                            Tab(
-                                                child: Text("Groupe",
-                                                    style: TextStyle(
-                                                        color:
-                                                            Colors.orange[700],
-                                                        fontSize: 20))),
-                                            Tab(
-                                                child: Text("Critère",
-                                                    style: TextStyle(
-                                                        color:
-                                                            Colors.orange[700],
-                                                        fontSize: 20))),
-                                          ],
-                                          onTap: (value) {
-                                            setState(() {
-                                              print('yes');
-                                              if (value == 0) {
-                                                print("Evenements");
-                                                title = "Evenements";
-                                              } else if (value == 1) {
-                                                title = "Candidats";
-                                                print(title);
-                                              } else if (value == 2) {
-                                                title = "Groupes";
-                                              } else if (value == 1) {
-                                                title = "Critères";
-                                              }
-                                            });
-                                          },
-                                        ),
-                                      ),
-                                    )),
+                                  quarterTurns: 3,
+                                  child: Scaffold(
+                                    appBar: AppBar(
+                                        backgroundColor: Colors.black,
+                                        bottom: PreferredSize(
+                                          preferredSize: Size(300, 200),
+                                          child: Container(
+                                            child: TabBar(tabs: [
+                                              Tab(
+                                                  child: Text("Evenement",
+                                                      style: TextStyle(
+                                                          color: Colors
+                                                              .orange[700],
+                                                          fontSize: 20))),
+                                              Tab(
+                                                  child: Text("Candidat",
+                                                      style: TextStyle(
+                                                          color: Colors
+                                                              .orange[700],
+                                                          fontSize: 20))),
+                                              Tab(
+                                                  child: Text("Groupe",
+                                                      style: TextStyle(
+                                                          color: Colors
+                                                              .orange[700],
+                                                          fontSize: 20))),
+                                              Tab(
+                                                  child: Text("Critère",
+                                                      style: TextStyle(
+                                                          color: Colors
+                                                              .orange[700],
+                                                          fontSize: 20))),
+                                            ]),
+                                          ),
+                                        )),
+                                  ),
+                                ),
                               ),
                             )
                           ],
@@ -158,5 +144,5 @@ class _MyAppState extends State<MyApp> {
 }
 
 var evenement = new Evenement();
-var candidat = new ListeCandidat();
-var edit = new NewUpdateEvent(id: null);
+var candidat = new Candidat();
+var edit = new NewUpdateEvent();
