@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:jury_pro/Candidat.dart';
+import 'package:jury_pro/listeCandidat.dart';
 import 'package:jury_pro/newUpdate.dart';
 import 'Evenement.dart';
+import 'candidat.dart';
 import 'listeCandidat.dart';
+import 'listeCritere.dart';
 
 void main() => runApp(MyApp());
 
@@ -81,9 +83,9 @@ class _MyAppState extends State<MyApp> {
                                 child: TabBarView(
                                   children: [
                                     evenement,
-                                    candidat,
-                                    Text("data3"),
+                                    listeCandidat,
                                     Text("data4"),
+                                    listeCritere,
                                   ],
                                 ),
                               ),
@@ -125,22 +127,23 @@ class _MyAppState extends State<MyApp> {
                                                             Colors.orange[700],
                                                         fontSize: 20))),
                                           ],
-                                          onTap: (value) {
-                                            setState(() {
-                                              print('yes');
-                                              if (value == 0) {
-                                                print("Evenements");
-                                                title = "Evenements";
-                                              } else if (value == 1) {
-                                                title = "Candidats";
-                                                print(title);
-                                              } else if (value == 2) {
-                                                title = "Groupes";
-                                              } else if (value == 1) {
-                                                title = "Critères";
-                                              }
-                                            });
-                                          },
+                                          // onTap: (value) {
+                                          //   setState(() {
+                                          //     print('yes');
+                                          //     if (value == 0) {
+                                          //       print("Evenements");
+                                          //       title = "Evenements";
+                                          //     } else if (value == 1) {
+                                          //       title = "Candidats";
+                                          //       print(title);
+                                          //     } else if (value == 2) {
+                                          //       title = "Groupes";
+                                          //     } else if (value == 1) {
+                                          //       title = "Critères";
+                                          //     }
+                                          //   });
+
+                                          // },
                                         ),
                                       ),
                                     )),
@@ -158,5 +161,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 var evenement = new Evenement();
-var candidat = new ListeCandidat();
+var listeCandidat = new ListeCandidat();
 var edit = new NewUpdateEvent(id: null);
+var candidat = new Candidat();
+var listeCritere = new Critere();

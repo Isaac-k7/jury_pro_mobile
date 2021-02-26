@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:jury_pro/evenementsActif.dart';
 import 'main.dart';
 import '_main.dart';
 
@@ -49,8 +50,10 @@ class _HomeState extends State<Home> {
                   children: [
                     FlatButton(
                       onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Login()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EvenementsActif()));
                       },
                       child: Container(
                         height: 100,
@@ -63,7 +66,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    Text("Profil",
+                    Text("JURY",
                         style:
                             TextStyle(fontSize: 20, color: Colors.orange[700]))
                   ],
@@ -79,10 +82,8 @@ class _HomeState extends State<Home> {
                   children: [
                     FlatButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => MyApp()));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => MyApp()));
                       },
                       child: Container(
                         height: 100,

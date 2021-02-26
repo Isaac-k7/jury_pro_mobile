@@ -12,16 +12,16 @@ import 'package:image_picker/image_picker.dart';
 import '_main.dart';
 import 'newUpdate.dart';
 
-class Evenement extends StatefulWidget {
-  static const pageName = "Evenement";
+class Critere extends StatefulWidget {
+  static const pageName = "critere";
   @override
-  _EvenementState createState() => _EvenementState();
+  _CritereState createState() => _CritereState();
 }
 
-class _EvenementState extends State<Evenement> {
-  String item = "evenements";
+class _CritereState extends State<Critere> {
+  String item = "criteres";
   List data;
-  List evenements;
+  List criteres;
 
   // Upload image var
   Future<File> file;
@@ -53,11 +53,11 @@ class _EvenementState extends State<Evenement> {
     });
   }
 
-  Future deleteEvenement(String uri) async {
+  Future deletecritere(String uri) async {
     String _uri = uri;
 
-    var request = http.Request('POST',
-        Uri.parse('http://172.31.240.26:8080/evenements/delete/' + _uri));
+    var request = http.Request(
+        'POST', Uri.parse('http://172.31.240.26:8080/criteres/delete/' + _uri));
     http.StreamedResponse response = await request.send();
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
@@ -80,7 +80,7 @@ class _EvenementState extends State<Evenement> {
                   child: Column(
                     children: <Widget>[
                       Center(
-                        //listes des evenements
+                        //listes des criteres
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Card(
@@ -116,7 +116,8 @@ class _EvenementState extends State<Evenement> {
                                           ),
                                           Align(
                                             alignment: Alignment.topRight,
-                                            child: Text("${data[index]["nom"]}",
+                                            child: Text(
+                                                "${data[index]["criteres_libelle"]}",
                                                 style: TextStyle(
                                                     color: Colors.orange[700],
                                                     fontSize: 24)),
@@ -129,13 +130,14 @@ class _EvenementState extends State<Evenement> {
                                         Container(
                                           height: 80,
                                           width: 100,
-                                          child: Image.memory(image),
+                                          // child: Image.memory(image),
                                           decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                           ),
                                         ),
-                                        Text("${data[index]["type"]}",
+                                        Text(
+                                            "Barèms : ${data[index]["candidat_bareme"]}",
                                             style: TextStyle(
                                                 color: Colors.orange,
                                                 fontSize: 18)),
@@ -145,11 +147,12 @@ class _EvenementState extends State<Evenement> {
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: <Widget>[
                                         Text(
-                                            "Début: ${data[index]["dateDebut"]}",
+                                            "Début: ${data[index]["detail"]}",
                                             style: TextStyle(
                                                 color: Colors.orange[700],
                                                 fontSize: 11)),
-                                        Text("Fin: ${data[index]["dateFin"]}",
+                                        Text(
+                                            "Fin: ${data[index]["criteres_id"]}",
                                             style: TextStyle(
                                                 color: Colors.orange[700],
                                                 fontSize: 11)),
@@ -179,7 +182,7 @@ class _EvenementState extends State<Evenement> {
                                                             context) =>
                                                         CupertinoAlertDialog(
                                                           title: Text(
-                                                              "Etes-vous sûr de vouloir supprimer cet evenement?"),
+                                                              "Etes-vous sûr de vouloir supprimer cet critere?"),
                                                           // content: Text(
                                                           //     "This is the content"),
                                                           actions: [
@@ -191,7 +194,7 @@ class _EvenementState extends State<Evenement> {
                                                                               .orange[
                                                                           900])),
                                                               onPressed: () {
-                                                                this.deleteEvenement(
+                                                                this.deletecritere(
                                                                     "${data[index]["id"]}"
                                                                         .toString());
                                                                 Navigator.of(
@@ -271,4 +274,4 @@ class _EvenementState extends State<Evenement> {
   }
 }
 
-void editEvenement() {}
+void editcritere() {}

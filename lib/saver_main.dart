@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jury_pro/Candidat.dart';
+import 'package:jury_pro/listeCandidat.dart';
 import 'package:jury_pro/newUpdate.dart';
 import 'Evenement.dart';
 
@@ -144,5 +144,5 @@ class _MyAppState extends State<MyApp> {
 }
 
 var evenement = new Evenement();
-var candidat = new Candidat();
+var candidat = new ListeCandidat();
 var edit = new NewUpdateEvent();

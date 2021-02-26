@@ -15,10 +15,9 @@ class Splash extends StatelessWidget {
       home: Home(),
       duration: 3000,
       imageSize: 200,
-      imageSrc: "images/orange.png",
+      imageSrc: "assets/images/orange.png",
       backgroundColor: Colors.white,
     );
-
     return MaterialApp(
       title: 'Splash screen Demo',
       home: example1,
